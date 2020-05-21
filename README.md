@@ -4,4 +4,4 @@
 I have not done any of the extra credit
 
 ## Screenshot
-<image alt="AnnoyingEx Screenshot" src="./screenshot/screenshot_1.png" height="500" />
+<image alt="AnnoyingEx Screenshot" src="./screenshot/Screenshot_1.png" height="500" />
