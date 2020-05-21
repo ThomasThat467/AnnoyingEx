@@ -23,21 +23,23 @@ class MessageNotificationManager(private val context: Context) {
 
     // Creates notification of fake message
     fun makeMessage() {
-        val dealsIntent = Intent(context, MainActivity::class.java).apply {
+        val messageList = (context as AnnoyingExApp).messageList
+        val message = messageList[Random.nextInt(messageList.size)]
+
+        val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            this.putExtra("message", message)
         }
 
-        val pendingDealsIntent = PendingIntent.getActivity(context, 0, dealsIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-        val messageList = (context as AnnoyingExApp).messageList
+        val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notification = NotificationCompat.Builder(context, MESSAGE_CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Don't Pick Up")
-            .setContentText(messageList[Random.nextInt(messageList.size)])
+            .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-            .setContentIntent(pendingDealsIntent)
+            .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .build()
 
