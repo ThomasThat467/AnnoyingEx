@@ -21,6 +21,7 @@ class MessageNotificationManager(private val context: Context) {
         createNotificationChannel()
     }
 
+    // Creates notification of fake message
     fun makeMessage() {
         val dealsIntent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -43,10 +44,12 @@ class MessageNotificationManager(private val context: Context) {
         notificationManagerCompat.notify(Random.nextInt(), notification)
     }
 
+
+    // Makes notification channel to make notifications
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "My Dumb Ex"
-            val descriptionText = "Seriously, can they get any more desperate?"
+            val name = "My Annoying Ex"
+            val descriptionText = "Sends annoying messages"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(MESSAGE_CHANNEL_ID, name, importance).apply {
                 description = descriptionText

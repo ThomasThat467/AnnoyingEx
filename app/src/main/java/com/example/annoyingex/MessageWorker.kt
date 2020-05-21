@@ -1,16 +1,15 @@
 package com.example.annoyingex
 
 import android.content.Context
-import android.util.Log
 import androidx.work.*
-import com.example.annoyingex.manager.MessageNotificationManager
 
-class MessageWorker (private val context: Context, workParams: WorkerParameters): Worker(context, workParams) {
+class MessageWorker (context: Context, workParams: WorkerParameters): Worker(context, workParams) {
     private val notificationManager = (context as AnnoyingExApp).messageNotificationManager
 
+    // Send the message
     override fun doWork(): Result {
         notificationManager.makeMessage()
 
-        return Result.retry()
+        return Result.success()
     }
 }

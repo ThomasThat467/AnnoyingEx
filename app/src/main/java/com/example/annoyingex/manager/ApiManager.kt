@@ -11,6 +11,7 @@ import com.google.gson.Gson
 class ApiManager(context: Context) {
     private val queue = Volley.newRequestQueue(context)
 
+    // Fetches the initial list of messages to send
     fun fetchMessages(initMessages: (MessageList) -> Unit, onError: (() -> Unit)? = null) {
         val songListURL = "https://raw.githubusercontent.com/echeeUW/codesnippets/master/ex_messages.json"
 
